@@ -97,6 +97,82 @@
         </div>
 
     </main>
+
+    <!-- ===== EP ANNOUNCEMENT: floating side triggers ===== -->
+    <button type="button" id="ep-side-left" class="ep-side" aria-label="Save avanT_gárd">
+        <img src="assets/Toy.png" alt="">
+        <span class="ep-side-label">presave ⟡</span>
+    </button>
+ 
+    <button type="button" id="ep-side-right" class="ep-side" aria-label="Open avanT_gárd info">
+        <img src="assets/Shirt.png" alt="">
+        <span class="ep-side-label">more info ⟡</span>
+    </button>
+ 
+    <!-- ===== EP ANNOUNCEMENT: save/presave modal ===== -->
+    <div class="modal-overlay ep-modal" id="ep-save-modal">
+        <div class="modal-panel">
+            <button type="button" class="modal-close" id="ep-save-modal-close" aria-label="Close">&times;</button>
+            <div class="modal-header">
+                <h2><span class="ep-glitch" data-text="avanT_gárd">avanT_gárd</span></h2>
+                <p>save it before it drops</p>
+            </div>
+ 
+            <img src="assets/avant-cover.jpg" alt="avanT_gárd cover art" class="ep-cover-art">
+ 
+            <a href="https://tunelink.co/teasbogre/avant_gard" target="_blank" rel="noopener noreferrer" class="buy-button">PRE-SAVE</a>
+        </div>
+    </div>
+ 
+    <!-- ===== EP ANNOUNCEMENT: info modal ===== -->
+    <div class="modal-overlay ep-modal" id="ep-modal">
+        <div class="modal-panel">
+            <button type="button" class="modal-close" id="ep-modal-close" aria-label="Close">&times;</button>
+            <div class="modal-header">
+                <h2><span class="ep-glitch" data-text="avanT_gárd">avanT_gárd</span></h2>
+                <p>teasbogre &mdash; experimental / breakcore / harsh noise / necrotrap / broken beat / lo-fi</p>
+            </div>
+ 
+            <div id="ep-countdown">
+                <div class="ep-unit"><span class="ep-num" id="ep-d">00</span><span class="ep-lbl">days</span></div>
+                <div class="ep-unit"><span class="ep-num" id="ep-h">00</span><span class="ep-lbl">hrs</span></div>
+                <div class="ep-unit"><span class="ep-num" id="ep-m">00</span><span class="ep-lbl">min</span></div>
+                <div class="ep-unit"><span class="ep-num" id="ep-s">00</span><span class="ep-lbl">sec</span></div>
+            </div>
+ 
+            <ol class="ep-tracklist">
+                <li>intr0</li>
+                <li>andY</li>
+                <li>PROJECT_1</li>
+                <li>v5 (mastered).wav</li>
+                <li>PROJECT_2</li>
+                <li>Wednesday at 18:22</li>
+                <li>cRack</li>
+                <li>PROJECT_3</li>
+            </ol>
+ 
+            <div class="ep-info-block">
+                <h3>how i made it</h3>
+                <p>
+                    <!-- EDIT ME: swap this placeholder for your real writeup -->
+                    -
+                </p>
+            </div>
+ 
+            <div class="ep-info-block">
+                <h3>thank you's</h3>
+                <p>
+                    <!-- EDIT ME: swap this placeholder for your real thank you's -->
+                    -
+                </p>
+            </div>
+ 
+            <a href="/music" class="buy-button">LISTEN NOW</a>
+        </div>
+    </div>
+ 
+    <canvas id="ep-confetti-canvas"></canvas>
+
     <script src="script.js"></script>
 </body>
 </html>
