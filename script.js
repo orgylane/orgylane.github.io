@@ -12,7 +12,7 @@ if (menuToggle && navBar) {
 // EP ANNOUNCEMENT - edit EP_RELEASE_DATE to your real drop date/time
 // ==========================================================================
  
-const EP_RELEASE_DATE = new Date("2026-10-10T00:00:00");
+const EP_RELEASE_DATE = new Date("2026-10-01T00:00:00");
  
 const epModal = document.getElementById('ep-modal');
 const epModalClose = document.getElementById('ep-modal-close');
