@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="icon" href="assets/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery-style.css">
+</head>
+<body class="gallery-body">
+    <header>
+        <nav class="nav-bar" aria-label="Primary navigation">
+            <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Toggle navigation menu">
+                <span></span>
+            </button>
+            <a class="home-button" href="index.html" aria-label="Home">
+                <img src="assets/house.png" alt="Home">
+            </a>
+            <div class="nav-links" id="primary-menu">
+                <div class="nav-link-box">
+                    <a href="me.html">Me & Blog</a>
+                </div>
+                <div class="nav-link-box">
+                    <a href="music.html">Music</a>
+                </div>
+                <div class="nav-link-box">
+                    <a href="merch.html">Merch</a>
+                </div>
+                <div class="nav-link-box">
+                    <a href="gallery.html">Gallery</a>
+                </div>
+                <div class="nav-link-box">
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="page-content hero">
+            <h1>GALLERY</h1>
+            <h2>pictures, videos & random stuff</h2>
+            <p class="intro">welcome to the visual vault</p>
+        </div>
+
+        <!-- GALLERY ITEM 1: IMAGE & PROCESS -->
+        <div class="page-content">
+            <h2>avanT_gárd COVER ART</h2>
+            <div class="card-preview" style="justify-content: center; margin-bottom: 15px;">
+                <img src="assets/avant-cover.jpg" alt="avanT_gárd cover" style="max-width: 100%; width: 320px; border-radius: 12px; border: 3px solid #fff;">
+            </div>
+            <h3>how I made it:</h3>
+            <p>I was looking at japanese marketplaces and just found these stuff. thought they look cool so i screenshotted and put them on a white background</p>
+        </div>
+
+        <!-- GALLERY ITEM 2: VIDEO EMBED -->
+        <div class="page-content">
+            <h2>andY - recording session</h2>
+            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 3px solid #fff; margin-bottom: 15px;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/S2g180FHsZ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <h3>the 2-hour Ableton jam session</h3>
+            <p>2 hours long uncut footage of me making the beat and recording on it. took me 3 days, if we dont look at the time it took to write the lyrics. my longest video so far</p>
+        </div>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

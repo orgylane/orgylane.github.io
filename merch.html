@@ -18,17 +18,19 @@
             </a>
             <div class="nav-links" id="primary-menu">
                 <div class="nav-link-box">
-                    <a href="/me">Me & Blog</a>
+                    <a href="me.html">Me & Blog</a>
                 </div>
                 <div class="nav-link-box">
-                    <a href="/music">Music</a>
+                    <a href="music.html">Music</a>
                 </div>
                 <div class="nav-link-box">
-                    <a href="/merch">Merch</a>
+                    <a href="merch.html">Merch</a>
                 </div>
                 <div class="nav-link-box">
-                    <a href="/contact">Contact</a>
+                    <a href="gallery.html">Gallery</a>
                 </div>
+                <div class="nav-link-box">
+                    <a href="contact.html">Contact</a>
             </div>
         </nav>
     </header>
@@ -41,9 +43,42 @@
 
         <div class="page-content merch-page">
             <h1>TEASBOGRE MERCH</h1>
-            <p class="intro">FIRST -- ORIGINAL -- EPIC</p>
             <p class="intro">uhm yeeah.. teasbogre merch !!! enjoy ^_^</p>
             
+            <!-- PRODUCT avanT_MAX -->
+            <div class="product-card" id="card-avant-max" role="button" tabindex="0" aria-label="Open avanT_MAX product modal">
+                <div class="card-preview">
+                    <img src="assets/maximal_white_avant_front.png" alt="White shirt front preview">
+                    <div class="card-copy">
+                        <h2 class="tag">avanT_MAX </h2>
+                        <p>click to inspect the shirt !!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-copy">
+                <p>100% heavyweight cotton (220 g/m²). (Black version in the making!)</p>
+                <p class="modal-caption"> PRICE: 13.000 HUF // around 36 EUR // around 40 USD</p>
+            </div>
+
+            <br><hr style="border: 1px solid rgba(255,255,255,0.1); margin: 30px 0;"><br>
+
+            <!-- PRODUCT avanT_min -->
+            <div class="product-card" id="card-avant-min" role="button" tabindex="0" aria-label="Open avanT_min product modal">
+                <div class="card-preview">
+                    <img src="assets/minimal_white_avant_front.png" alt="White shirt front preview">
+                    <div class="card-copy">
+                        <h2 class="tag">avanT_min</h2>
+                        <p>click to inspect the shirt !!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-copy">
+                <p>100% heavyweight cotton (220 g/m²). (Black version in the making!)</p>
+                <p class="modal-caption"> PRICE: 13.000 HUF // around 36 EUR // around 40 USD</p>
+            </div>
+
+            <br><hr style="border: 1px solid rgba(255,255,255,0.1); margin: 30px 0;"><br>
+
             <!-- PRODUCT V1 -->
             <div class="product-card" id="card-v1" role="button" tabindex="0" aria-label="Open TEASBOGRE v1 product modal">
                 <div class="card-preview">
@@ -74,22 +109,6 @@
             <div class="product-copy">
                 <p>100% heavyweight cotton (220 g/m²). Includes a custom burned CD-R full of teasbogre stuff and exclusive beats.</p>
                 <p class="modal-caption"> PRICE: 15.000 HUF // around 42 EUR // around 49 USD</p>
-            </div>
-
-            <br><hr style="border: 1px solid rgba(255,255,255,0.1); margin: 30px 0;"><br>
-
-            <div class="product-card" id="card-4" role="button" tabindex="0" aria-label="Open TEASBOGRE v1 product modal">
-                <div class="card-preview">
-                    <img src="assets/Front.png" alt="White shirt front preview">
-                    <div class="card-copy">
-                        <h2 class="tag">TEASBOGRE_4ever</h2>
-                        <p>click to inspect the shirt !!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="product-copy">
-                <p>100% heavyweight cotton (220 g/m²). 1/1 SPECIAL HAND-SPRAYED EDITION. Supply will last until my paint sprayer runs out LOL </p>
-                <p class="modal-caption"> PRICE: 10.000 HUF // around 30 EUR // around 31 USD</p>
             </div>
 
         </div>
@@ -139,6 +158,48 @@
             </div>
         </div>
 
+    <!-- MODAL avanT_MAX -->
+    <div class="modal-overlay" id="modal-avant-max" aria-hidden="true">
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="productTitleAvantMax">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            <div class="modal-header">
+                <h2 id="productTitleAvantMax">avanT_MAX</h2>
+                <p>White version available. (Black version in the making!)</p>
+            </div>
+            <div class="modal-toggle-group">
+                <button type="button" class="color-toggle active" data-color="white">White</button>
+            </div>
+            <div class="modal-images">
+                <img class="frontImage" src="assets/maximal_white_avant_front.png" alt="White shirt front" role="button" tabindex="0" aria-label="Click to zoom front shirt image">
+                <img class="backImage" src="assets/maximal_white_avant_back.png" alt="White shirt back" role="button" tabindex="0" aria-label="Click to zoom back shirt image">
+            </div>
+            <a class="buy-button" href="https://www.instagram.com/_teasbogre/" target="_blank" rel="noopener noreferrer">Get it now!</a>            
+            <p class="modal-caption">100% heavyweight cotton (220 g/m²). Includes a custom burned CD-R full of teasbogre stuff and exclusive beats.</p>
+            <p class="modal-caption"> PRICE: 15.000 HUF // around 42 EUR // around 49 USD</p>
+        </div>
+    </div>
+
+    <!-- MODAL avanT_min -->
+    <div class="modal-overlay" id="modal-avant-min" aria-hidden="true">
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="productTitleAvantMin">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            <div class="modal-header">
+                <h2 id="productTitleAvantMin">avanT_min</h2>
+                <p>White version available. (Black version in the making!)</p>
+            </div>
+            <div class="modal-toggle-group">
+                <button type="button" class="color-toggle active" data-color="white">White</button>
+            </div>
+            <div class="modal-images">
+                <img class="frontImage" src="assets/minimal_white_avant_front.png" alt="White shirt front" role="button" tabindex="0" aria-label="Click to zoom front shirt image">
+                <img class="backImage" src="assets/minimal_white_avant_back.png" alt="White shirt back" role="button" tabindex="0" aria-label="Click to zoom back shirt image">
+            </div>
+            <a class="buy-button" href="https://www.instagram.com/_teasbogre/" target="_blank" rel="noopener noreferrer">Get it now!</a>            
+            <p class="modal-caption">100% heavyweight cotton (220 g/m²). Includes a custom burned CD-R full of teasbogre stuff and exclusive beats.</p>
+            <p class="modal-caption"> PRICE: 15.000 HUF // around 42 EUR // around 49 USD</p>
+        </div>
+    </div>
+
     <!-- MODAL V1 -->
     <div class="modal-overlay" id="modal-v1" aria-hidden="true">
         <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="productTitleV1">
@@ -187,26 +248,6 @@
         </div>
     </div>
 
-    <!-- MODAL 4ever -->
-    <div class="modal-overlay" id="modal-4" aria-hidden="true">
-        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="productTitleVX">
-            <button class="modal-close" aria-label="Close modal">×</button>
-            <div class="modal-header">
-                <h2 id="productTitleVX">TEASBOGRE_4ever</h2>
-                <p>White version only. (i only have black spray paint)</p>
-            </div>
-            <div class="modal-toggle-group">
-                <button type="button" class="color-toggle active" data-color="white">White</button>
-            </div>
-            <div class="modal-images">
-                <img class="frontImage" src="assets/Front.png" alt="Shirt front" role="button" tabindex="0">
-            </div>
-            <a class="buy-button" href="https://www.instagram.com/_teasbogre/" target="_blank" rel="noopener noreferrer">Get it now!</a>            
-            <p class="modal-caption">Basically a 1/1. Every shirt is different. You COMPLETELY trust me with the design. Who knows, maybe you'll have the coolest out of them all !! Supply lasts until my spray paint is out</p>
-            <p class="modal-caption"> PRICE: 10.000 HUF // around 30 EUR // around 31 USD</p>
-        </div>
-    </div>
-
     <!-- MODAL MiKO -->
     <div class="modal-overlay" id="modal-M" aria-hidden="true">
         <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="productTitleVX">
@@ -236,8 +277,6 @@
             <p id="photoPreviewTitle" class="photo-caption">Click outside or press Esc to close</p>
         </div>
     </div>
-
-    
 
 
     <script>
@@ -356,6 +395,22 @@
                 });
             }
 
+            // avanT_MAX beállítása
+            setupProduct('card-avant-max', 'modal-avant-max', {
+                white: { 
+                    front: 'assets/maximal_white_avant_front.png', 
+                    back: 'assets/maximal_white_avant_back.png' 
+                }
+            });
+
+            // avanT_min beállítása
+            setupProduct('card-avant-min', 'modal-avant-min', {
+                white: { 
+                    front: 'assets/minimal_white_avant_front.png', 
+                    back: 'assets/minimal_white_avant_back.png' 
+                }
+            });
+
             // V1 beállítása
             setupProduct('card-v1', 'modal-v1', {
                 white: { front: 'assets/shirt_white_front.png', back: 'assets/shirt_white_back.png' },
@@ -373,13 +428,6 @@
                 white: { 
                     front: 'assets/Miko-FRONT.png', 
                     back: 'assets/Miko-BACK.png' 
-                },
-            });
-
-            // 4ever beállítása
-            setupProduct('card-4', 'modal-4', {
-                white: { 
-                    front: 'assets/Front.png', 
                 },
             });
 

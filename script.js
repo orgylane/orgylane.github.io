@@ -25,7 +25,6 @@ const epSideLeft = document.getElementById('ep-side-left');
 function openEpModal() {
     if (!epModal) return;
     epModal.classList.add('open');
-    fireEpConfetti();
 }
  
 function closeEpModal() {
@@ -36,7 +35,6 @@ function closeEpModal() {
 function openEpSaveModal() {
     if (!epSaveModal) return;
     epSaveModal.classList.add('open');
-    fireEpConfetti();
 }
  
 function closeEpSaveModal() {

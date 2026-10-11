@@ -18,18 +18,21 @@
     </a>
     <div class="nav-links" id="primary-menu">
         <div class="nav-link-box">
-            <a href="/me">Me & Blog</a>
+            <a href="me.html">Me & Blog</a>
         </div>
         <div class="nav-link-box">
-            <a href="/music">Music</a>
+            <a href="music.html">Music</a>
         </div>
         <div class="nav-link-box">
-            <a href="/merch">Merch</a>
+            <a href="merch.html">Merch</a>
         </div>
         <div class="nav-link-box">
-            <a href="/contact">Contact</a>
+            <a href="gallery.html">Gallery</a>
         </div>
+        <div class="nav-link-box">
+            <a href="contact.html">Contact</a>
     </div>
+</div>
 </nav>
     </header>
     <main>
@@ -41,6 +44,12 @@
         </div>
         
         <h1>---------- LOGS ----------</h1>
+
+        <div class="page-content blog">
+            <h2>VERSION 1.4.7</h2>
+            <h3>- NEW BLOG</h3>
+            <h3>- new merch uploaded, check it out!</h3>
+        </div>
 
         <div class="page-content blog">
             <h2>VERSION 1.4.5</h2>
@@ -108,12 +117,12 @@
     <!-- ===== EP ANNOUNCEMENT: floating side triggers ===== -->
     <button type="button" id="ep-side-left" class="ep-side" aria-label="Save avanT_gárd">
         <img src="assets/Toy.png" alt="">
-        <span class="ep-side-label">presave ⟡</span>
+        <span class="ep-side-label">LISTEN ⟡</span>
     </button>
  
     <button type="button" id="ep-side-right" class="ep-side" aria-label="Open avanT_gárd info">
         <img src="assets/Shirt.png" alt="">
-        <span class="ep-side-label">more info ⟡</span>
+        <span class="ep-side-label">some info ⟡</span>
     </button>
  
     <!-- ===== EP ANNOUNCEMENT: save/presave modal ===== -->
@@ -122,12 +131,12 @@
             <button type="button" class="modal-close" id="ep-save-modal-close" aria-label="Close">&times;</button>
             <div class="modal-header">
                 <h2><span class="ep-glitch" data-text="avanT_gárd">avanT_gárd</span></h2>
-                <p>save it before it drops</p>
+                <p>take a listen !</p>
             </div>
  
             <img src="assets/avant-cover.jpg" alt="avanT_gárd cover art" class="ep-cover-art">
  
-            <a href="https://tunelink.co/teasbogre/avant_gard" target="_blank" rel="noopener noreferrer" class="buy-button">PRE-SAVE</a>
+            <a href="https://tunelink.co/teasbogre/avant_gard" target="_blank" rel="noopener noreferrer" class="buy-button">GO LISTEN</a>
         </div>
     </div>
  
@@ -137,15 +146,6 @@
             <button type="button" class="modal-close" id="ep-modal-close" aria-label="Close">&times;</button>
             <div class="modal-header">
                 <h2><span class="ep-glitch" data-text="avanT_gárd">avanT_gárd</span></h2>
-                <p>Releasing in:</p>
-            </div>
- 
-            <div id="ep-countdown">
-                <div class="ep-unit"><span class="ep-num" id="ep-d">00</span><span class="ep-lbl">days</span></div>
-                <div class="ep-unit"><span class="ep-num" id="ep-h">00</span><span class="ep-lbl">hrs</span></div>
-                <div class="ep-unit"><span class="ep-num" id="ep-m">00</span><span class="ep-lbl">min</span></div>
-                <div class="ep-unit"><span class="ep-num" id="ep-s">00</span><span class="ep-lbl">sec</span></div>
-            </div>
  
             <ol class="ep-tracklist">
                 <li>intr0</li>
@@ -183,11 +183,9 @@
                 </p>    
             </div>
  
-             <a href="https://tunelink.co/teasbogre/avant_gard" target="_blank" rel="noopener noreferrer" class="buy-button">PRE-SAVE</a>   
+             <a href="https://tunelink.co/teasbogre/avant_gard" target="_blank" rel="noopener noreferrer" class="buy-button">GO LISTEN</a>   
         </div>
     </div>
- 
-    <canvas id="ep-confetti-canvas"></canvas>
 
     <script src="script.js"></script>
 </body>
