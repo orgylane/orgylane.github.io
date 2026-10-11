@@ -43,14 +43,43 @@
             <p class="intro">welcome to the visual vault</p>
         </div>
 
-        <!-- GALLERY ITEM 1: IMAGE & PROCESS -->
-        <div class="page-content">
-            <h2>avanT_gárd COVER ART</h2>
-            <div class="card-preview" style="justify-content: center; margin-bottom: 15px;">
-                <img src="assets/avant-cover.jpg" alt="avanT_gárd cover" style="max-width: 100%; width: 320px; border-radius: 12px; border: 3px solid #fff;">
+        <!-- SLIDESHOW / EVOLUTION SECTION -->
+        <div class="page-content" id="slideshow-section">
+            <h2>avanT_gárd cover evolution</h2>
+            <p class="intro">step-by-step procedure</p>
+            
+            <div class="slideshow-container">
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <div class="slide-number">01 / 03</div>
+                    <img src="assets/earrings.png" alt="Step 1">
+                    <h3>EarRings</h3>
+                    <p>These were the first things i found that i found and i decided to save it as a screenshot</p>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <div class="slide-number">02 / 03</div>
+                    <img src="assets/shirt - Copy.png" alt="Step 2">
+                    <h3>Shirt</h3>
+                    <p>I wanted something avant-gardish random stuff so i just took this pic and added it too</p>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <div class="slide-number">03 / 03</div>
+                    <img src="assets/avant-cover.jpg" alt="Step 3">
+                    <h3>The Cover</h3>
+                    <p>i duplicated the earrings and added the shirt a lil distorted, wrote some text and done! thats the cover!</p>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="slideshow-controls">
+                    <button type="button" class="slide-btn" id="prevBtn">&larr; PREV</button>
+                    <span id="slideIndicator">1 / 3</span>
+                    <button type="button" class="slide-btn" id="nextBtn">NEXT &rarr;</button>
+                </div>
             </div>
-            <h3>how I made it:</h3>
-            <p>I was looking at japanese marketplaces and just found these stuff. thought they look cool so i screenshotted and put them on a white background</p>
         </div>
 
         <!-- GALLERY ITEM 2: VIDEO EMBED -->
@@ -62,8 +91,105 @@
             <h3>the 2-hour Ableton jam session</h3>
             <p>2 hours long uncut footage of me making the beat and recording on it. took me 3 days, if we dont look at the time it took to write the lyrics. my longest video so far</p>
         </div>
-
+    
+    
     </main>
+
+    <!-- ===== COMICS FLOATING BUTTON ===== -->
+    <button type="button" id="comics-side-btn" class="comics-side" aria-label="Open Comics">
+        <div class="comics-side-inner">
+            <img src="assets/comics.png" alt="Comics">
+            <span class="comics-side-label">COMICS ⟡</span>
+        </div>
+    </button>
+
+    <!-- ===== COMICS MODAL WITH CHAPTERS ===== -->
+    <div class="modal-overlay" id="comics-modal" aria-hidden="true">
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="comicsTitle">
+            <button type="button" class="modal-close" id="comics-modal-close" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <h2 id="comicsTitle"><span class="ep-glitch" data-text="TEASBOGRE COMICS">TEASBOGRE COMICS</span></h2>
+                <p>some stuff from my mind</p>
+            </div>
+            
+            <div class="comics-chapters-container">
+                <ul class="comics-chapter-list">
+                    <li><a href="assets/Part_0.jpg" target="_blank" rel="noopener noreferrer">CHAPTER 0: piloT (halloween edition)</a></li>
+                </ul>
+            </div>
+
+            <p class="modal-caption" style="margin-top: 20px;">new pages might come</p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicator = document.getElementById('slideIndicator');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            if (indicator) {
+                indicator.textContent = `${index + 1} / ${slides.length}`;
+            }
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            });
+        }
+
+        showSlide(currentSlide);
+    });
+
+    // ==========================================================================
+// COMICS MODAL MANAGEMENT
+// ==========================================================================
+const comicsBtn = document.getElementById('comics-side-btn');
+const comicsModal = document.getElementById('comics-modal');
+const comicsModalClose = document.getElementById('comics-modal-close');
+
+function openComicsModal() {
+    if (!comicsModal) return;
+    comicsModal.classList.add('open');
+    comicsModal.setAttribute('aria-hidden', 'false');
+}
+
+function closeComicsModal() {
+    if (!comicsModal) return;
+    comicsModal.classList.remove('open');
+    comicsModal.setAttribute('aria-hidden', 'true');
+}
+
+if (comicsBtn) {
+    comicsBtn.addEventListener('click', openComicsModal);
+}
+
+if (comicsModalClose) {
+    comicsModalClose.addEventListener('click', closeComicsModal);
+}
+
+if (comicsModal) {
+    comicsModal.addEventListener('click', (e) => {
+        if (e.target === comicsModal) closeComicsModal();
+    });
+}
+
+</script>
 </body>
 </html>

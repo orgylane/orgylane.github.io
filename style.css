@@ -1003,3 +1003,175 @@ body.gallery-body {
     background-position: top left !important;
     background-attachment: scroll !important;
 }
+
+/* ==========================================================================
+   SLIDESHOW / EVOLUTION STYLES
+   ========================================================================== */
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: 20px auto 0;
+    text-align: center;
+}
+
+.slide {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.slide.active {
+    display: block;
+}
+
+.slide img {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    border-radius: 14px;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    margin: 10px auto 15px;
+    display: block;
+    background: #111;
+    object-fit: contain;
+}
+
+.slide-number {
+    font-size: 0.8rem;
+    color: #aaa;
+    letter-spacing: 0.1em;
+    margin-bottom: 5px;
+}
+
+.slideshow-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.slide-btn {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.slide-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0.4; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================================================
+   COMICS FLOATING BUTTON & MODAL
+   ========================================================================== */
+.comics-side {
+    position: fixed;
+    bottom: 30px;
+    left: 40px;
+    z-index: 15;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.15s ease-out;
+}
+
+.comics-side-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    filter: drop-shadow(4px 6px 0 rgba(0, 0, 0, 0.55));
+    animation: comics-swing 4.8s ease-in-out infinite;
+}
+
+.comics-side img {
+    display: block;
+    width: 100px;
+    height: auto;
+    pointer-events: none;
+}
+
+.comics-side:hover .comics-side-inner {
+    transform: scale(1.08);
+}
+
+.comics-side-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+@keyframes comics-swing {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(4deg) translateY(-8px); }
+}
+
+.comics-chapter-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 420px;
+    text-align: left;
+}
+
+.comics-chapter-list li {
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.comics-chapter-list li:hover {
+    transform: translateX(4px);
+    border-color: #ff00ff;
+}
+
+.comics-chapter-list li a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: block;
+    text-transform: uppercase;
+}
+
+.comics-chapter-list li a:hover {
+    color: #ff00ff;
+}
+
+@media (max-width: 768px) {
+    .comics-side {
+        bottom: 12px;
+        left: 14px;
+    }
+    .comics-side img {
+        width: 75px;
+    }
+    .comics-side-label {
+        font-size: 0.5rem;
+        padding: 2px 6px;
+    }
+}
