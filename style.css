@@ -11,7 +11,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Courier New', monospace;
-    background: url('assets/background.jpg') repeat;
+    background: url('assets/GUI/background.jpg') repeat;
     background-size: auto;
     background-position: top left;
     color: #fff;
@@ -459,12 +459,12 @@ p {
     align-items: center;
     gap: 18px;
     margin-bottom: 24px;
-    flex-wrap: wrap; /* Hogy mobilon egymás alá kerüljenek, ha nem férnek el */
+    flex-wrap: wrap;
 }
 
 .modal-images img {
     width: 100%;
-    max-width: 320px; /* Megakadályozza, hogy egy egyedüli kép túl nagyra nyúljon */
+    max-width: 320px;
     height: auto;
     border-radius: 18px;
     border: 3px solid rgba(255, 255, 255, 0.9);
@@ -656,7 +656,6 @@ p {
    TEASBOGRE_V6 - AGGRESSIVE GOTHIC DARK RED STYLE 
    ========================================================================== */
 
-/* A fő kártya sötét gótikus stílusa */
 .product-card.v6-gothic {
     background: rgba(6, 6, 6, 0.95) !important;
     border: 3px solid #8b0000 !important;
@@ -681,7 +680,6 @@ p {
     text-shadow: 0 0 10px #8b0000 !important;
 }
 
-/* A V6-os felugró ablak (Modal) belső áthangolása sötétvörösre */
 #modal-v6 .modal-panel {
     background: rgba(8, 2, 2, 0.99) !important;
     border: 2px solid #8b0000 !important;
@@ -721,42 +719,9 @@ p {
 }
 
 /* ==========================================================================
-   EP ANNOUNCEMENT - countdown, reopen badge, confetti canvas
+   FLOATING SIDE BUTTONS (TOY & SHIRT)
    ========================================================================== */
- 
-#ep-countdown {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
- 
-.ep-unit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 64px;
-    padding: 10px 8px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 2px solid #fff;
-    border-radius: 12px;
-}
- 
-.ep-num {
-    font-size: 1.6rem;
-    font-weight: 900;
-    text-shadow: 0 0 10px #00ff00;
-}
- 
-.ep-lbl {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #ccc;
-    margin-top: 2px;
-}
- 
+
 .ep-side {
     position: fixed;
     z-index: 15;
@@ -895,7 +860,6 @@ p {
     }
 }
  
-/* glitch text: red/cyan split that flickers on a stutter, not constantly */
 .ep-glitch {
     position: relative;
     display: inline-block;
@@ -938,75 +902,17 @@ p {
     94% { opacity: 0.85; transform: translate(1px, 0); clip-path: inset(35% 0 30% 0); }
     95% { opacity: 0; }
 }
- 
-.ep-tracklist {
-    list-style: none;
-    counter-reset: ep-track;
-    margin: 0 0 20px;
-    padding: 14px 16px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 2px dashed rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
-    max-width: 360px;
-    margin-left: auto;
-    margin-right: auto;
-}
- 
-.ep-tracklist li {
-    counter-increment: ep-track;
-    font-family: 'Courier New', monospace;
-    font-size: 0.85rem;
-    color: #eee;
-    padding: 4px 0;
-    text-align: left;
-}
- 
-.ep-tracklist li::before {
-    content: counter(ep-track, decimal-leading-zero) " — ";
-    color: #ff00ff;
-    text-shadow: 0 0 6px #ff00ff;
-}
- 
-#ep-confetti-canvas {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 25;
-}
- 
-@media (max-width: 768px) {
-    #ep-reopen-badge {
-        right: 12px;
-        bottom: 12px;
-        padding: 10px 14px;
-        font-size: 0.75rem;
-    }
- 
-    .ep-unit {
-        min-width: 54px;
-        padding: 8px 6px;
-    }
- 
-    .ep-num {
-        font-size: 1.3rem;
-    }
-}
- 
-
 
 /* ==========================================================================
-   GALLERY BACKGROUND THEME
+   GALLERY BACKGROUND THEME & SLIDESHOW & COMICS
    ========================================================================== */
 body.gallery-body {
-    background: url('assets/gallery_background.jpg') repeat !important;
+    background: url('assets/GUI/gallery_background.jpg') repeat !important;
     background-size: auto !important;
     background-position: top left !important;
     background-attachment: scroll !important;
 }
 
-/* ==========================================================================
-   SLIDESHOW / EVOLUTION STYLES
-   ========================================================================== */
 .slideshow-container {
     position: relative;
     max-width: 100%;
@@ -1073,9 +979,6 @@ body.gallery-body {
     to { opacity: 1; transform: scale(1); }
 }
 
-/* ==========================================================================
-   COMICS FLOATING BUTTON & MODAL
-   ========================================================================== */
 .comics-side {
     position: fixed;
     bottom: 30px;

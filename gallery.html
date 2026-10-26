@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
-    <link rel="icon" href="assets/icon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/GUI/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="gallery-style.css">
 </head>
@@ -15,7 +15,7 @@
                 <span></span>
             </button>
             <a class="home-button" href="index.html" aria-label="Home">
-                <img src="assets/house.png" alt="Home">
+                <img src="assets/GUI/house.png" alt="Home">
             </a>
             <div class="nav-links" id="primary-menu">
                 <div class="nav-link-box">
@@ -43,6 +43,37 @@
             <p class="intro">welcome to the visual vault</p>
         </div>
 
+        <!-- PHYSICAL ARCHIVE SECTION -->
+        <div class="page-content" id="cd-showcase-section">
+            <h2>PHYSICAL ARCHIVE</h2>
+            <p class="intro">physical releases</p>
+
+            <!-- FREE CD SUB-SECTION (4 darab kép -> szépen középre igazítva) -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #00ff00; text-shadow: 0 0 8px #00ff00;">FREE BONUS CD [[ R A R E ]]</h3>
+                <p>lil sneak peak..</p>
+                <div class="modal-images" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 15px;">
+                    <img src="assets/Fun/FREE_CD_EXAMPLE_FRONT.jpg" alt="Free CD Front" class="gallery-cd-img" style="width: 200px; max-width: 100%;">
+                    <img src="assets/Fun/FREE_CD_EXAMPLE_BACK.jpg" alt="Free CD Back" class="gallery-cd-img" style="width: 200px; max-width: 100%;">
+                    <img src="assets/Fun/FREE_CD_EXAMPLE_CASE_FRONT.jpg" alt="Free CD Case Front" class="gallery-cd-img" style="width: 200px; max-width: 100%;">
+                    <img src="assets/Fun/FREE_CD_EXAMPLE_CASE_BACK.jpg" alt="Free CD Case Back" class="gallery-cd-img" style="width: 200px; max-width: 100%;">
+                </div>
+            </div>
+
+            <hr style="border: 1px solid rgba(255,255,255,0.15); margin: 25px 0;">
+
+            <!-- OTHER CD SUB-SECTION (3 darab kép -> tökéletesen középen lesznek) -->
+            <div>
+                <h3 style="color: #ff00ff; text-shadow: 0 0 8px #ff00ff;">CUSTOM RELEASE CD</h3>
+                <p>How the CDs look</p>
+                <div class="modal-images" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 15px;">
+                    <img src="assets/Fun/CD_OUTSIDE_CASE_FRONT.jpg" alt="CD Case Front" class="gallery-cd-img" style="width: 200px; max-width: 100%;">
+                    <img src="assets/Fun/CD_OUTSIDE_CASE_BACK.jpg" alt="CD Case Back" class="gallery-cd-img" style="width: 200px; max-width: 100%;">
+                    <img src="assets/Fun/CD_OUTSIDE_CASE_INSIDE.jpg" alt="CD Case Inside" class="gallery-cd-img" style="width: 200px; max-width: 100%;">
+                </div>
+            </div>
+        </div>
+
         <!-- SLIDESHOW / EVOLUTION SECTION -->
         <div class="page-content" id="slideshow-section">
             <h2>avanT_gárd cover evolution</h2>
@@ -52,7 +83,7 @@
                 <!-- Slide 1 -->
                 <div class="slide active">
                     <div class="slide-number">01 / 03</div>
-                    <img src="assets/earrings.png" alt="Step 1">
+                    <img src="assets/Fun/earrings.png" alt="Step 1">
                     <h3>EarRings</h3>
                     <p>These were the first things i found that i found and i decided to save it as a screenshot</p>
                 </div>
@@ -60,7 +91,7 @@
                 <!-- Slide 2 -->
                 <div class="slide">
                     <div class="slide-number">02 / 03</div>
-                    <img src="assets/shirt - Copy.png" alt="Step 2">
+                    <img src="assets/Fun/shirt - Copy.png" alt="Step 2">
                     <h3>Shirt</h3>
                     <p>I wanted something avant-gardish random stuff so i just took this pic and added it too</p>
                 </div>
@@ -68,7 +99,7 @@
                 <!-- Slide 3 -->
                 <div class="slide">
                     <div class="slide-number">03 / 03</div>
-                    <img src="assets/avant-cover.jpg" alt="Step 3">
+                    <img src="assets/Fun/avant-cover.jpg" alt="Step 3">
                     <h3>The Cover</h3>
                     <p>i duplicated the earrings and added the shirt a lil distorted, wrote some text and done! thats the cover!</p>
                 </div>
@@ -98,7 +129,7 @@
     <!-- ===== COMICS FLOATING BUTTON ===== -->
     <button type="button" id="comics-side-btn" class="comics-side" aria-label="Open Comics">
         <div class="comics-side-inner">
-            <img src="assets/comics.png" alt="Comics">
+            <img src="assets/GUI/comics.png" alt="Comics">
             <span class="comics-side-label">COMICS ⟡</span>
         </div>
     </button>
@@ -114,7 +145,7 @@
             
             <div class="comics-chapters-container">
                 <ul class="comics-chapter-list">
-                    <li><a href="assets/Part_0.jpg" target="_blank" rel="noopener noreferrer">CHAPTER 0: piloT (halloween edition)</a></li>
+                    <li><a href="assets/avan_TuRes/PARTS/Part_0.jpg" target="_blank" rel="noopener noreferrer">CHAPTER 0: piloT (halloween edition)</a></li>
                 </ul>
             </div>
 
@@ -125,6 +156,7 @@
     <script src="script.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Slide controller
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const indicator = document.getElementById('slideIndicator');
@@ -155,41 +187,63 @@
         }
 
         showSlide(currentSlide);
+
+        // Zoom overlay for gallery CD and comic images
+        const photoOverlay = document.getElementById('photoPreview');
+        const previewImage = document.getElementById('previewImage');
+        const photoClose = document.querySelector('.photo-close');
+
+        const openPreview = (img) => {
+            if (!photoOverlay || !previewImage) return;
+            previewImage.src = img.src;
+            previewImage.alt = img.alt;
+            photoOverlay.classList.add('open');
+            photoOverlay.setAttribute('aria-hidden', 'false');
+        };
+
+        const closePreview = () => {
+            if (!photoOverlay) return;
+            photoOverlay.classList.remove('open');
+            photoOverlay.setAttribute('aria-hidden', 'true');
+        };
+
+        document.querySelectorAll('.gallery-cd-img').forEach(img => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', () => openPreview(img));
+        });
+
+        if (photoClose) photoClose.addEventListener('click', closePreview);
+        if (photoOverlay) {
+            photoOverlay.addEventListener('click', (e) => {
+                if (e.target === photoOverlay) closePreview();
+            });
+        }
     });
 
-    // ==========================================================================
-// COMICS MODAL MANAGEMENT
-// ==========================================================================
-const comicsBtn = document.getElementById('comics-side-btn');
-const comicsModal = document.getElementById('comics-modal');
-const comicsModalClose = document.getElementById('comics-modal-close');
+    // Comics Modal logic
+    const comicsBtn = document.getElementById('comics-side-btn');
+    const comicsModal = document.getElementById('comics-modal');
+    const comicsModalClose = document.getElementById('comics-modal-close');
 
-function openComicsModal() {
-    if (!comicsModal) return;
-    comicsModal.classList.add('open');
-    comicsModal.setAttribute('aria-hidden', 'false');
-}
+    function openComicsModal() {
+        if (!comicsModal) return;
+        comicsModal.classList.add('open');
+        comicsModal.setAttribute('aria-hidden', 'false');
+    }
 
-function closeComicsModal() {
-    if (!comicsModal) return;
-    comicsModal.classList.remove('open');
-    comicsModal.setAttribute('aria-hidden', 'true');
-}
+    function closeComicsModal() {
+        if (!comicsModal) return;
+        comicsModal.classList.remove('open');
+        comicsModal.setAttribute('aria-hidden', 'true');
+    }
 
-if (comicsBtn) {
-    comicsBtn.addEventListener('click', openComicsModal);
-}
-
-if (comicsModalClose) {
-    comicsModalClose.addEventListener('click', closeComicsModal);
-}
-
-if (comicsModal) {
-    comicsModal.addEventListener('click', (e) => {
-        if (e.target === comicsModal) closeComicsModal();
-    });
-}
-
-</script>
+    if (comicsBtn) comicsBtn.addEventListener('click', openComicsModal);
+    if (comicsModalClose) comicsModalClose.addEventListener('click', closeComicsModal);
+    if (comicsModal) {
+        comicsModal.addEventListener('click', (e) => {
+            if (e.target === comicsModal) closeComicsModal();
+        });
+    }
+    </script>
 </body>
 </html>

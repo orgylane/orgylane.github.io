@@ -9,10 +9,8 @@ if (menuToggle && navBar) {
 }
 
 // ==========================================================================
-// EP ANNOUNCEMENT - edit EP_RELEASE_DATE to your real drop date/time
+// MODALS MANAGEMENT (COMIC & ALBUM)
 // ==========================================================================
- 
-const EP_RELEASE_DATE = new Date("2026-10-01T00:00:00");
  
 const epModal = document.getElementById('ep-modal');
 const epModalClose = document.getElementById('ep-modal-close');
@@ -86,100 +84,44 @@ function updateEpParallax() {
  
 window.addEventListener('scroll', updateEpParallax, { passive: true });
 updateEpParallax();
- 
-// show once per browser tab session, then only reopen via the shirt image trigger
-// swap sessionStorage -> localStorage if you want it to show once per visitor ever
-if (epModal && !sessionStorage.getItem('ep_modal_shown')) {
-    setTimeout(() => {
-        openEpModal();
-        sessionStorage.setItem('ep_modal_shown', '1');
-    }, 700);
-}
- 
-function updateEpCountdown() {
-    const dEl = document.getElementById('ep-d');
-    const hEl = document.getElementById('ep-h');
-    const mEl = document.getElementById('ep-m');
-    const sEl = document.getElementById('ep-s');
-    if (!dEl) return;
- 
-    const now = new Date();
-    let diff = EP_RELEASE_DATE - now;
-    if (diff < 0) diff = 0;
- 
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
- 
-    dEl.textContent = String(d).padStart(2, '0');
-    hEl.textContent = String(h).padStart(2, '0');
-    mEl.textContent = String(m).padStart(2, '0');
-    sEl.textContent = String(s).padStart(2, '0');
-}
- 
-updateEpCountdown();
-setInterval(updateEpCountdown, 1000);
- 
-// ---- confetti burst (plain canvas, no external libs) ----
-const epCanvas = document.getElementById('ep-confetti-canvas');
-const epCtx = epCanvas ? epCanvas.getContext('2d') : null;
- 
-function resizeEpCanvas() {
-    if (!epCanvas) return;
-    epCanvas.width = window.innerWidth;
-    epCanvas.height = window.innerHeight;
-}
-resizeEpCanvas();
-window.addEventListener('resize', resizeEpCanvas);
- 
-const epColors = ['#00ff00', '#ff00ff', '#ffffff', '#8b0000', '#ffcc00'];
-let epParticles = [];
- 
-function fireEpConfetti() {
-    if (!epCtx) return;
-    epParticles = [];
-    const originX = epCanvas.width / 2;
-    const originY = epCanvas.height / 2 - 100;
- 
-    for (let i = 0; i < 140; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 3 + Math.random() * 7;
-        epParticles.push({
-            x: originX,
-            y: originY,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed - 2,
-            size: 4 + Math.random() * 5,
-            color: epColors[Math.floor(Math.random() * epColors.length)],
-            rotation: Math.random() * 360,
-            rotSpeed: (Math.random() - 0.5) * 10,
-            life: 100 + Math.random() * 40
+
+// ==========================================================================
+// LIGHTWEIGHT GALLERY IMAGE ZOOM (NO EXTRA HTML NEEDED)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.gallery-cd-img');
+    if (!images.length) return;
+
+    // Overlay létrehozása dinamikusan
+    const overlay = document.createElement('div');
+    overlay.className = 'photo-overlay';
+    overlay.innerHTML = `
+        <div class="photo-panel">
+            <button type="button" class="photo-close" aria-label="Close">&times;</button>
+            <img id="zoom-img-target" src="" alt="">
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const targetImg = overlay.querySelector('#zoom-img-target');
+    const closeBtn = overlay.querySelector('.photo-close');
+
+    const closeZoom = () => overlay.classList.remove('open');
+
+    images.forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+            targetImg.src = img.src;
+            targetImg.alt = img.alt;
+            overlay.classList.add('open');
         });
-    }
-    requestAnimationFrame(animateEpConfetti);
-}
- 
-function animateEpConfetti() {
-    epCtx.clearRect(0, 0, epCanvas.width, epCanvas.height);
-    let alive = false;
-    epParticles.forEach((p) => {
-        if (p.life <= 0) return;
-        alive = true;
-        p.vy += 0.12;
-        p.x += p.vx;
-        p.y += p.vy;
-        p.rotation += p.rotSpeed;
-        p.life -= 1;
-        epCtx.save();
-        epCtx.translate(p.x, p.y);
-        epCtx.rotate((p.rotation * Math.PI) / 180);
-        epCtx.globalAlpha = Math.max(p.life / 100, 0);
-        epCtx.fillStyle = p.color;
-        epCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
-        epCtx.restore();
     });
-    if (alive) requestAnimationFrame(animateEpConfetti);
-    else epCtx.clearRect(0, 0, epCanvas.width, epCanvas.height);
-}
- 
+
+    closeBtn.addEventListener('click', closeZoom);
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeZoom();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeZoom();
+    });
+});

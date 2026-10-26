@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>teasbogre</title>
-    <link rel="icon" href="assets/icon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/GUI/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
         <span></span>
     </button>
     <a class="home-button" href="/" aria-label="Home">
-        <img src="assets/house.png" alt="Home">
+        <img src="assets/GUI/house.png" alt="Home">
     </a>
     <div class="nav-links" id="primary-menu">
         <div class="nav-link-box">
@@ -44,6 +44,14 @@
         </div>
         
         <h1>---------- LOGS ----------</h1>
+
+        <div class="page-content blog">
+            <h2>VERSION 1.5.7</h2>
+            <h3>- Added more Behind-The-Scenes</h3>
+            <h3>- uploaded a new comic, click on the toy on your left!</h3>
+            <h3>- cleaned up the files, and the code</h3>
+            <h3>- NEW BLOG</h3>
+        </div>
 
         <div class="page-content blog">
             <h2>VERSION 1.5</h2>
@@ -120,76 +128,59 @@
 
     </main>
 
-    <!-- ===== EP ANNOUNCEMENT: floating side triggers ===== -->
-    <button type="button" id="ep-side-left" class="ep-side" aria-label="Save avanT_gárd">
-        <img src="assets/Toy.png" alt="">
-        <span class="ep-side-label">LISTEN ⟡</span>
+   <!-- ===== TOY BUTTON: PROMOTES COMICS ===== -->
+    <button type="button" id="ep-side-left" class="ep-side" aria-label="Open TEASBOGRE Comic">
+        <img src="assets/GUI/Toy.png" alt="Toy Comic Button">
+        <span class="ep-side-label">COMICS ⟡</span>
     </button>
  
-    <button type="button" id="ep-side-right" class="ep-side" aria-label="Open avanT_gárd info">
-        <img src="assets/Shirt.png" alt="">
-        <span class="ep-side-label">some info ⟡</span>
+    <!-- ===== SHIRT BUTTON: PROMOTES ALBUM ===== -->
+    <button type="button" id="ep-side-right" class="ep-side" aria-label="Save avanT_gárd Album">
+        <img src="assets/GUI/Shirt.png" alt="Shirt Album Button">
+        <span class="ep-side-label">ALBUM ⟡</span>
     </button>
  
-    <!-- ===== EP ANNOUNCEMENT: save/presave modal ===== -->
+    <!-- ===== COMIC PROMO MODAL (Opened by Toy button) ===== -->
     <div class="modal-overlay ep-modal" id="ep-save-modal">
         <div class="modal-panel">
             <button type="button" class="modal-close" id="ep-save-modal-close" aria-label="Close">&times;</button>
             <div class="modal-header">
-                <h2><span class="ep-glitch" data-text="avanT_gárd">avanT_gárd</span></h2>
-                <p>take a listen !</p>
+                <h2><span class="ep-glitch" data-text="TEASBOGRE COMICS">TEASBOGRE COMICS</span></h2>
+                <p>check out my drawings</p>
             </div>
  
-            <img src="assets/avant-cover.jpg" alt="avanT_gárd cover art" class="ep-cover-art">
+            <img src="assets/avan_TuRes/PROMO.jpg" alt="Teasbogre Comics Teaser" class="ep-cover-art" style="max-width: 100%; width: 100%; max-height: 60vh; object-fit: contain;">
+
+            <div class="ep-info-block">
+                <h3>ABOUT THE COMIC</h3>
+                <p>
+                    im drawing some original micro-comics! Check out the gallery page to read the "PILOT" and to learn about the origin of [untitled]!
+                </p>
+            </div>
  
-            <a href="https://tunelink.co/teasbogre/avant_gard" target="_blank" rel="noopener noreferrer" class="buy-button">GO LISTEN</a>
+            <a href="gallery.html#comics-section" class="buy-button">READ COMICS IN GALLERY</a>
         </div>
     </div>
  
-    <!-- ===== EP ANNOUNCEMENT: info modal ===== -->
+    <!-- ===== ALBUM PROMO MODAL (Opened by Shirt button) ===== -->
     <div class="modal-overlay ep-modal" id="ep-modal">
         <div class="modal-panel">
             <button type="button" class="modal-close" id="ep-modal-close" aria-label="Close">&times;</button>
             <div class="modal-header">
                 <h2><span class="ep-glitch" data-text="avanT_gárd">avanT_gárd</span></h2>
- 
-            <ol class="ep-tracklist">
-                <li>intr0</li>
-                <li>andY</li>
-                <li>PROJECT_1</li>
-                <li>v5 (mastered).wav</li>
-                <li>PROJECT_2</li>
-                <li>Wednesday at 18:22</li>
-                <li>cRack</li>
-                <li>PROJECT_3</li>
-            </ol>
- 
+                <p>ITS OUT</p>
+            </div>
+
+            <img src="assets/Fun/avant-cover.jpg" alt="avanT_gárd cover art" class="ep-cover-art">
+
             <div class="ep-info-block">
-                <h3>how i made it</h3>
+                <h3>LISTEN NOW</h3>
                 <p>
-                    Originally, I wanted a sequel to my last album "Ethernet Teas", but I realised I don't want that vibe anymore... I mean, it's good, but I overdid it and got bored.
-                    Then came the idea, to mix my other persona, MiKMiKO into teasbogre... That made me realise: I love producing silly stuff. If you've listened to the self-titled MiKMiKO album you know the vibe.
-                    So I tried and tried and in a week, I had all the beats for the album. Especially the "PROJECT_?" ones. Then I just wrote some lyrics (they took more time then the beats LOL) and done!
-                    I also got a lil bored of FL Studio, so track 2, "andY" was a live recording session in Ableton. The uncut, 2 hour footage can be found on my Youtube! (as soon as i can upload that long ass video)
+                    Check out my newest project "avanT_gárd" on mostly all major streaming platforms! (LOL)
                 </p>
             </div>
  
-            <div class="ep-info-block">
-                <h3>thank you's</h3>
-                <p>
-                    my friends, thank you blunt, thank you bnc, thank you zeno, thank you gergo, thank you tamas for the recording, thank u matyi, thank you peti, thank you másik peti, thank you every peti.
-                    
-                    Thank you for my international friends & supporters. Thank you jude, thank you plasmi, thank you xeva, thank you guys.
-                    
-                    Thank you to myself, my old self and my new self. Thank you to my cat.
-                    
-                    Also, thank you for my neighbors for pissing me off, without them, I wouldn't have this much rage in me.
-                    
-                    And lastly, I want to say thank you to my boyfriend. We're ALL getting partners in 2026-2027
-                </p>    
-            </div>
- 
-             <a href="https://tunelink.co/teasbogre/avant_gard" target="_blank" rel="noopener noreferrer" class="buy-button">GO LISTEN</a>   
+            <a href="https://tunelink.co/teasbogre/avant_gard" target="_blank" rel="noopener noreferrer" class="buy-button">GO LISTEN</a>   
         </div>
     </div>
 
