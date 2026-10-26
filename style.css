@@ -289,6 +289,7 @@ p {
 }
 
 .modal-panel {
+    position: relative; /* CRITICAL: ensures absolute children align properly */
     width: min(90%, 750px);
     max-height: calc(100vh - 80px);
     background: rgba(10, 10, 10, 0.98);
@@ -296,10 +297,25 @@ p {
     border-radius: 22px;
     box-shadow: 0 0 0 1px #000, 10px 10px 0 rgba(255, 255, 255, 0.1);
     padding: 20px;
-    position: relative;
     color: #fff;
     overflow-y: auto;
     scrollbar-width: none;
+}
+
+.modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 50; /* Ensures it stays on top of everything */
 }
 
 .modal-panel::-webkit-scrollbar {
@@ -1077,4 +1093,277 @@ body.gallery-body {
         font-size: 0.5rem;
         padding: 2px 6px;
     }
+}
+
+/* ==========================================================================
+   COMICS FLOATING BUBBLES & ZOOM-IN CLICK ANIMATION
+   ========================================================================== */
+.comics-view {
+    display: none;
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.comics-view.active-view {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.floating-bubbles-stage {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    margin-top: 10px;
+    overflow: hidden; /* Keeps floating bubbles inside the box */
+}
+
+/* Base bubble styling */
+.comic-bubble {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    border: 3px solid #fff;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    padding: 16px 28px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: auto; /* Ensures whole box captures clicks */
+    z-index: 5;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover freeze handled via JS, but add glow feedback */
+.comic-bubble:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+/* Zoom-in click animation effect */
+.comic-bubble.zooming-in {
+    animation: bubbleZoomIn 0.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    z-index: 20;
+}
+
+@keyframes bubbleZoomIn {
+    0% {
+        transform: translate(var(--curr-x), var(--curr-y)) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--curr-x), var(--curr-y)) scale(12);
+        opacity: 0;
+    }
+}
+
+/* Back button inside sub-views */
+.comic-back-btn {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    padding: 8px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background 0.2s ease, color 0.2s ease;
+    display: block;
+}
+
+.comic-back-dir:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* ==========================================================================
+   BUBBLE BATTLE GAME STYLES & HUD
+   ========================================================================== */
+.floating-bubbles-stage {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    margin-top: 10px;
+    overflow: hidden;
+    touch-action: none;
+}
+
+#game-fx-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.comic-bubble {
+    position: absolute;
+    background: rgba(10, 10, 10, 0.9);
+    border: 3px solid #fff;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding: 14px 22px;
+    border-radius: 999px;
+    cursor: grab;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    user-select: none;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: auto;
+    z-index: 5;
+    will-change: left, top, transform;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, opacity 0.4s ease;
+}
+
+.comic-bubble:active {
+    cursor: grabbing;
+}
+
+.comic-bubble.held-weapon {
+    border-color: #00ff00;
+    box-shadow: 0 0 25px #00ff00, inset 0 0 10px #00ff00;
+    z-index: 100 !important;
+}
+
+.comic-bubble.target-enemy {
+    border-color: #ff0055;
+    box-shadow: 0 0 15px #ff0055;
+}
+
+.comic-bubble.destroyed {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: scale(0.2) !important;
+}
+
+.bubble-hp-bar {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 4px);   /* hearts float ABOVE the bubble */
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    line-height: 1;
+    letter-spacing: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    text-shadow: 0 0 4px #000;
+}
+
+.target-enemy .bubble-hp-bar {
+    display: block !important;
+}
+
+/* no white hover flash while a battle is running */
+.battle-on .comic-bubble:hover {
+    background: rgba(10, 10, 10, 0.9);
+    color: #fff;
+}
+.battle-on .comic-bubble.held-weapon {
+    cursor: grabbing;
+}
+.comic-bubble.hit {
+    animation: bubbleHit 0.25s ease;
+}
+@keyframes bubbleHit {
+    0%, 100% { background: rgba(10, 10, 10, 0.9); }
+    30%      { background: #ff0055; }
+}
+
+.bubble-game-hud {
+    display: none;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.game-hud-timer {
+    color: #00ff00;
+    text-shadow: 0 0 8px #00ff00;
+}
+
+.game-hud-best {
+    color: #ff00ff;
+    text-shadow: 0 0 8px #ff00ff;
+}
+
+#game-fx-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50; /* Above bubbles during victory explosion */
+}
+
+.game-message-banner {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-align: center;
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.game-message-banner.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+.game-message-banner.game-over {
+    border-color: #ff0033;
+    color: #ff0033;
+    box-shadow: 0 0 20px rgba(255, 0, 51, 0.6);
+}
+
+.game-message-banner.victory {
+    border-color: #00ff00;
+    color: #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+}
+
+.game-message-banner.mobile-warn {
+    border-color: #ffcc00;
+    color: #ffcc00;
 }

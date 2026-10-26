@@ -7,6 +7,7 @@
     <link rel="icon" href="assets/GUI/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="gallery-style.css">
+    <link rel="stylesheet" href="fight.css">
 </head>
 <body class="gallery-body">
     <header>
@@ -134,26 +135,97 @@
         </div>
     </button>
 
-    <!-- ===== COMICS MODAL WITH CHAPTERS ===== -->
-    <div class="modal-overlay" id="comics-modal" aria-hidden="true">
-        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="comicsTitle">
-            <button type="button" class="modal-close" id="comics-modal-close" aria-label="Close modal">&times;</button>
+<!-- ===== COMICS MODAL WITH BUBBLE GAME ENGINE ===== -->
+<div class="modal-overlay" id="comics-modal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="comicsTitle">
+        <button type="button" class="modal-close" id="comics-modal-close" aria-label="Close modal">&times;</button>
+        
+        <!-- VIEW 1: MAIN FLOATING MENU & GAME STAGE -->
+        <div class="comics-view active-view" id="comics-main-view">
             <div class="modal-header">
                 <h2 id="comicsTitle"><span class="ep-glitch" data-text="TEASBOGRE COMICS">TEASBOGRE COMICS</span></h2>
-                <p>some stuff from my mind</p>
+                
+                <!-- GAME HUD -->
+                <div id="bubble-game-hud" class="bubble-game-hud" style="display: none;">
+                    <div class="game-hud-timer">TIME: <span id="game-timer">00:00.000</span></div>
+                    <div class="game-hud-best">BEST: <span id="game-best-time">--:--.---</span></div>
+                </div>
             </div>
             
-            <div class="comics-chapters-container">
+            <!-- Floating bubble stage -->
+            <div class="floating-bubbles-stage" id="floating-bubbles-stage">
+                <!-- Canvas for particles & confetti -->
+                <canvas id="game-fx-canvas"></canvas>
+
+                <!-- Floating Buttons with Health Display Containers -->
+                <button type="button" class="comic-bubble bubble-origins" data-target="view-origins" data-id="origins">
+                    <span class="bubble-hp-bar"></span>
+                    <span class="bubble-label">ORIGINS</span>
+                </button>
+                <button type="button" class="comic-bubble bubble-pilot" data-target="view-pilot" data-id="pilot">
+                    <span class="bubble-hp-bar"></span>
+                    <span class="bubble-label">MICRO-STORIES</span>
+                </button>
+                <button type="button" class="comic-bubble bubble-chapters" data-target="view-chapters" data-id="chapters">
+                    <span class="bubble-hp-bar"></span>
+                    <span class="bubble-label">CHAPTERS</span>
+                </button>
+            </div>
+
+            <div class="menu-actions">
+                <button type="button" id="fight-start-btn" class="fight-start-btn is-locked">FIGHT!</button>
+                <div class="best-row egg-hidden" id="best-row" aria-hidden="true">🏆 BEST TIME: <span id="menu-best-time">--:--.---</span>
+                    <button type="button" id="reset-best-btn" class="reset-best-btn">RESET</button>
+                </div>
+                <p class="menu-hint egg-hidden" id="menu-hint" aria-hidden="true"></p>
+            </div>
+
+            <!-- Game Banner Notifications -->
+            <div id="game-message-banner" class="game-message-banner"></div>
+        </div>
+
+        <!-- VIEW 2: ORIGINS SUB-MENU -->
+        <div class="comics-view" id="view-origins">
+            <div class="modal-header">
+                <h2>ORIGIN</h2>
+            </div>
+            <div class="comics-sub-content">
+                <ul class="comics-chapter-list">
+                    <li><a href="assets/avan_TuRes/PARTS/origins/untitled_origin-story.jpg" target="_blank" rel="noopener noreferrer">- [untitled]</a></li>
+                </ul>
+            </div>
+            <button type="button" class="comic-back-btn">&larr; BACK</button>
+        </div>
+
+        <!-- VIEW 3: PILOT SUB-MENU -->
+        <div class="comics-view" id="view-pilot">
+            <div class="modal-header">
+                <h2>PILOT: HALLOWEEN</h2>
+            </div>
+            <div class="comics-sub-content">
                 <ul class="comics-chapter-list">
                     <li><a href="assets/avan_TuRes/PARTS/Part_0.jpg" target="_blank" rel="noopener noreferrer">CHAPTER 0: piloT (halloween edition)</a></li>
                 </ul>
             </div>
-
-            <p class="modal-caption" style="margin-top: 20px;">new pages might come</p>
+            <button type="button" class="comic-back-btn">&larr; BACK</button>
         </div>
+
+        <!-- VIEW 4: CHAPTERS SUB-MENU -->
+        <div class="comics-view" id="view-chapters">
+            <div class="modal-header">
+                <h2>CHAPTERS</h2>
+            </div>
+            <div class="comics-sub-content">
+                <p style="color: #aaa; text-align: center; margin: 20px 0;">new pages might come</p>
+            </div>
+            <button type="button" class="comic-back-btn">&larr; BACK</button>
+        </div>
+
     </div>
+</div>
 
     <script src="script.js"></script>
+    <script src="fight.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Slide controller
@@ -220,30 +292,6 @@
         }
     });
 
-    // Comics Modal logic
-    const comicsBtn = document.getElementById('comics-side-btn');
-    const comicsModal = document.getElementById('comics-modal');
-    const comicsModalClose = document.getElementById('comics-modal-close');
-
-    function openComicsModal() {
-        if (!comicsModal) return;
-        comicsModal.classList.add('open');
-        comicsModal.setAttribute('aria-hidden', 'false');
-    }
-
-    function closeComicsModal() {
-        if (!comicsModal) return;
-        comicsModal.classList.remove('open');
-        comicsModal.setAttribute('aria-hidden', 'true');
-    }
-
-    if (comicsBtn) comicsBtn.addEventListener('click', openComicsModal);
-    if (comicsModalClose) comicsModalClose.addEventListener('click', closeComicsModal);
-    if (comicsModal) {
-        comicsModal.addEventListener('click', (e) => {
-            if (e.target === comicsModal) closeComicsModal();
-        });
-    }
     </script>
 </body>
 </html>

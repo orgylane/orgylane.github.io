@@ -1,0 +1,407 @@
+/* ==========================================================================
+   WAVE FIGHT (full-screen sub-game) + shared menu bits
+   ========================================================================== */
+.menu-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.fight-start-btn {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    padding: 12px 42px;
+    color: #fff;
+    background: #ff0055;
+    border: 3px solid #fff;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 0 18px rgba(255, 0, 85, 0.7);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.fight-start-btn:hover {
+    transform: scale(1.06);
+    background: #ff2a75;
+    box-shadow: 0 0 30px rgba(255, 0, 85, 1);
+}
+
+.best-row {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #ff00ff;
+    text-shadow: 0 0 8px #ff00ff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: opacity 0.8s ease;
+}
+.best-row.egg-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.menu-hint {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #888;
+    min-height: 1.1em;
+    transition: opacity 0.8s ease;
+}
+.menu-hint.egg-hidden { opacity: 0; }
+
+.reset-best-btn {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 10px;
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 999px;
+    cursor: pointer;
+    text-shadow: none;
+}
+.reset-best-btn:hover { background: #fff; color: #000; }
+.reset-best-btn.confirming { background: #ff0033; border-color: #ff0033; color: #fff; }
+.reset-best-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* ---- hold-fight: darken the sides while a battle is running ---- */
+.modal-overlay {
+    transition: opacity 0.25s ease, visibility 0.25s ease, background 0.5s ease, box-shadow 0.5s ease;
+}
+.modal-overlay.battle-dark {
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 20%, #000 80%);
+    box-shadow: inset 0 0 22vw 8vw #000;
+}
+
+/* ---- fight overlay ---- */
+.fight-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: radial-gradient(ellipse at center, #1b1b22 0%, #060608 100%);
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow: hidden;
+    user-select: none;
+}
+.fight-overlay.open { opacity: 1; visibility: visible; }
+.fight-overlay .is-hidden { display: none !important; }
+
+/* dark sides, always on while the fight screen is open */
+.fight-vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    box-shadow: inset 0 0 20vw 7vw #000;
+}
+.fight-overlay.hurt .fight-vignette {
+    animation: fightHurt 0.3s ease;
+}
+@keyframes fightHurt {
+    0%   { box-shadow: inset 0 0 20vw 7vw #000, inset 0 0 12vw 4vw rgba(255, 0, 51, 0.8); }
+    100% { box-shadow: inset 0 0 20vw 7vw #000, inset 0 0 12vw 4vw rgba(255, 0, 51, 0); }
+}
+
+.fight-quit {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    z-index: 30;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 1.7rem;
+    line-height: 1;
+    cursor: pointer;
+}
+.fight-quit:hover { background: #fff; color: #000; }
+
+/* ---- character select ---- */
+.fight-select {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 20px;
+}
+.fight-title {
+    margin: 0;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    letter-spacing: 4px;
+    text-shadow: 0 0 14px #ff0055;
+    text-align: center;
+}
+.fight-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+.fight-card {
+    width: 190px;
+    padding: 18px 14px;
+    background: rgba(0, 0, 0, 0.75);
+    border: 3px solid var(--c, #fff);
+    border-radius: 22px;
+    color: #fff;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 0 14px var(--c, #fff);
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.fight-card:hover { transform: translateY(-6px) scale(1.04); background: var(--c, #fff); color: #000; }
+.fight-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.fight-card .weapon-hint { font-size: 0.7rem; opacity: 0.7; margin-bottom: 10px; }
+.fight-card .stat {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin: 4px 0;
+}
+.fight-card .pips { letter-spacing: 2px; }
+.fight-best, .fight-help { margin: 0; font-size: 0.85rem; color: #ccc; text-align: center; }
+.fight-best { color: #ff00ff; font-weight: bold; text-shadow: 0 0 8px #ff00ff; }
+.fight-help { font-size: 0.72rem; color: #777; }
+
+/* ---- play screen ---- */
+.fight-play { position: absolute; inset: 0; }
+.fight-arena {
+    position: absolute;
+    inset: 0;
+    cursor: crosshair;
+    z-index: 1;
+}
+
+.fight-hud {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    pointer-events: none;
+    padding: 0 70px;
+    flex-wrap: wrap;
+}
+.hud-name { font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+.hud-hpwrap {
+    position: relative;
+    width: min(340px, 40vw);
+    height: 22px;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+.hud-hpfill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #00b84a, #00ff66);
+    transition: width 0.15s ease;
+}
+.hud-hptext {
+    position: absolute;
+    inset: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 3px #000;
+}
+.hud-stat { font-weight: bold; text-shadow: 0 0 8px #000; }
+.hud-wave { color: #ffcc00; }
+.hud-left { color: #ff6688; }
+
+.fight-banner {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, 0) scale(0.9);
+    z-index: 25;
+    font-size: clamp(1.4rem, 5vw, 3rem);
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-align: center;
+    text-shadow: 0 0 18px #ff0055, 0 0 4px #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: pre-line;
+}
+.fight-banner.show { opacity: 1; transform: translate(-50%, 0) scale(1); }
+
+.fight-over {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    text-align: center;
+}
+.fight-over h2 { margin: 0; font-size: clamp(1.6rem, 5vw, 3rem); color: #ff0033; text-shadow: 0 0 18px #ff0033; }
+.fight-over p { margin: 0; font-size: 1rem; }
+.fight-over-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+.fight-over-btns button {
+    font-family: inherit;
+    font-weight: bold;
+    padding: 10px 22px;
+    color: #fff;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    cursor: pointer;
+}
+.fight-over-btns button:hover { background: #fff; color: #000; }
+
+/* ---- fighters ---- */
+.fighter {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 12px 22px;
+    background: rgba(10, 10, 10, 0.92);
+    border: 3px solid #ff0055;
+    border-radius: 999px;
+    box-shadow: 0 0 14px #ff0055;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    will-change: transform;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+}
+.fighter.is-player {
+    border-color: #00ff66;
+    box-shadow: 0 0 22px #00ff66, inset 0 0 10px rgba(0, 255, 102, 0.5);
+    z-index: 4;
+}
+.fighter.spawning { opacity: 0.25; }
+.fighter.dying { opacity: 0; pointer-events: none; }
+.fighter.hit .f-name { animation: fighterHit 0.22s ease; }
+@keyframes fighterHit {
+    0%, 100% { color: #fff; }
+    40%      { color: #ff0033; text-shadow: 0 0 10px #ff0033; }
+}
+.fighter.hit { background: rgba(120, 0, 30, 0.95); }
+
+.f-bar {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    bottom: calc(100% + 6px);
+    height: 8px;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+.f-bar i {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: #ff3355;
+    transition: width 0.12s ease;
+}
+.is-player .f-bar i { background: #00ff66; }
+
+.f-weapon {
+    position: absolute;
+    right: -20px;
+    top: -12px;
+    font-size: 1.7rem;
+    transform-origin: 20% 80%;
+    pointer-events: none;
+}
+.f-weapon.swing { animation: weaponSwing 0.32s ease-in-out; }
+@keyframes weaponSwing {
+    0%   { transform: rotate(0deg) scale(1); }
+    40%  { transform: rotate(-55deg) scale(1.3); filter: drop-shadow(0 0 8px #ff0033); }
+    75%  { transform: rotate(70deg) scale(1.3); }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+.f-ring {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 3px solid #00ff66;
+    box-shadow: 0 0 14px #00ff66;
+    pointer-events: none;
+    z-index: 2;
+    animation: ringPop 0.22s ease-out forwards;
+}
+@keyframes ringPop {
+    0%   { opacity: 0.9; transform: scale(0.8); }
+    100% { opacity: 0; transform: scale(1.08); }
+}
+
+.f-pop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+    pointer-events: none;
+    z-index: 8;
+    text-shadow: 0 0 4px #000;
+    animation: popUp 0.7s ease-out forwards;
+}
+.f-pop.to-player { color: #ff3355; font-size: 1.4rem; }
+.f-pop.to-enemy { color: #ffee55; }
+@keyframes popUp {
+    0%   { opacity: 1; margin-top: 0; }
+    100% { opacity: 0; margin-top: -40px; }
+}
+
+.fight-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    z-index: 90;
+    background: rgba(0, 0, 0, 0.92);
+    border: 2px solid #ffcc00;
+    color: #ffcc00;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.fight-toast.show { opacity: 1; visibility: visible; }
+
+.fight-start-btn.is-locked { display: none; }
